@@ -7,6 +7,11 @@ from model import CountLettersResponse
 api_router = fastapi.APIRouter()
 
 
+# Обрати внимание на @api_router.get <- get - тип HTTP метода!
+# Для того, чтобы создать put метод, необходимо написать @api_router.put
+# /sum - url относительно сервера, по которму будет доступен метод.
+# Обрати внимание на response_model <- описывает схему ответа сервера.
+# В данном случае ответ сервера = число
 @api_router.get("/sum", response_model=float)
 def sum_(a: float, b: float):
     """
@@ -15,6 +20,7 @@ def sum_(a: float, b: float):
     return a + b
 
 
+# Обрати внимание на response_model <- описывает схему ответа сервера
 @api_router.get("/count_letters", response_model=CountLettersResponse)
 def count_letters(text: str):
     """
